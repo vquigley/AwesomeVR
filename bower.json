@@ -1,0 +1,22 @@
+{
+  "name": "freevehiclecheck",
+  "description": "Free Vehicle Check",
+  "main": "index.js",
+  "author": "Vincent Quigley",
+  "moduleType": [
+    "amd"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "requirejs": "~2.1.22"
+  }
+}
