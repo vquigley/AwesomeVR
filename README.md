@@ -24,5 +24,5 @@ A test application for facebook bots using VR as the subject matter.
 
 ## Live Demo
 
-Website: http://awesome-vr.herokuapp.com/
-Facebook Page: 
+- Website: http://awesome-vr.herokuapp.com/
+- Facebook Page: https://www.facebook.com/awesomevrpage/
