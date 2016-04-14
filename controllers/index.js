@@ -25,11 +25,11 @@ module.exports = function (router) {
         var messaging_events = req.body.entry[0].messaging;
         
         for (var i = 0; i < messaging_events.length; i++) {
-            event = messaging_events[i];
-            sender = event.sender.id;
+            var event = messaging_events[i];
+            var sender = event.sender.id;
             if (event.message && event.message.text) {
-            text = event.message.text;
-             sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+                var text = event.message.text;
+                sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
             }
         }
         res.sendStatus(200);
