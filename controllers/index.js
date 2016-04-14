@@ -1,4 +1,5 @@
 'use strict';
+var request = require('request');
 
 var IndexModel = require('../models/index');
 
@@ -21,7 +22,7 @@ module.exports = function (router) {
     });
     
     router.post('/api/messenger', function (req, res) {
-        console.log(JSON.stringify(req.body));
+
         var messaging_events = req.body.entry[0].messaging;
         
         for (var i = 0; i < messaging_events.length; i++) {
@@ -36,9 +37,8 @@ module.exports = function (router) {
     });  
 
     function sendTextMessage(sender, text) {
-        messageData = {
-            text:text
-        }
+        var messageData = {text:text};
+        
         request(
             {
                 url: 'https://graph.facebook.com/v2.6/me/messages',
