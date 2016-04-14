@@ -48,7 +48,7 @@
             }
         },
         
-        "lusca": {
+        "appsec": {
             "priority": 100,
             "enabled": true,
             "module": {
