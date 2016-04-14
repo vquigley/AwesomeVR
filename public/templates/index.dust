@@ -13,6 +13,15 @@
                 	<p class="intro">Register Interest</p>
                     <input type="email" placeholder="EMAIL" />
                     <h3>Get news on the latest Awesome VR updates</h3>
+                    -------OR-------
+                    <p class="intro">Ask us a question</p>
+                    <div class="fb-messengermessageus" 
+                        messenger_app_id="488656554661257" 
+                        page_id="CAAG8bjhblYkBAM7HjhTS2KcmjaSlrlcce80adJ9JUFC4BpDKTCBMIC1i3vKhzF5ScbeZBtyWAD4lI76J24UZBF76mKNNsK4Bqt6oIFxoyCtxgUCCKGTzWO3htRCZAd4soZAVhYQyKD4V52MASPtwFDR13cjSu4b4SIqJfYyP5nWhfhwG5YKoRn9dFTYz6q2gJaLCTxGbugZDZD" 
+                        data-ref="PASS_THROUGH_PARAM" 
+                        color="blue" 
+                        size="standard"></div>
+                     </div>
 				</div>
   			</div>
 		</div>
@@ -28,7 +37,7 @@
                 data-share="true"
                 data-width="450"
                 data-show-faces="true">
-            </div>
+                
             </div>
 		</div>
 	</div>
