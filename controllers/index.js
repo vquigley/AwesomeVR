@@ -8,14 +8,15 @@ module.exports = function (router) {
 
     var model = new IndexModel();
     
+    var verifyToken = "I_R_BABOON";
+    var pageToken = "CAAG8bjhblYkBAM7HjhTS2KcmjaSlrlcce80adJ9JUFC4BpDKTCBMIC1i3vKhzF5ScbeZBtyWAD4lI76J24UZBF76mKNNsK4Bqt6oIFxoyCtxgUCCKGTzWO3htRCZAd4soZAVhYQyKD4V52MASPtwFDR13cjSu4b4SIqJfYyP5nWhfhwG5YKoRn9dFTYz6q2gJaLCTxGbugZDZD";
+        
     router.get('/', function (req, res) {
         res.render('index', model);
     });
     
-    var token = "I_R_BABOON";
-    
     router.get('/api/messenger', function (req, res) {
-        if (req.query['hub.verify_token'] === token) {
+        if (req.query['hub.verify_token'] === verifyToken) {
             res.send(req.query['hub.challenge']);
         }
         res.send('Error, wrong validation token');
@@ -42,7 +43,7 @@ module.exports = function (router) {
         request(
             {
                 url: 'https://graph.facebook.com/v2.6/me/messages',
-                qs: {access_token:token},
+                qs: {access_token:pageToken},
                 method: 'POST',
                 json: {
                     recipient: {id:sender},
