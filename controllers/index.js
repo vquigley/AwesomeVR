@@ -30,6 +30,13 @@ module.exports = function (router) {
         for (var i = 0; i < messaging_events.length; i++) {
             var event = messaging_events[i];
             var sender = event.sender.id;
+  
+            if (event.postback) {
+              var text = JSON.stringify(event.postback);
+              sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
+              continue;
+            }
+            
             if (event.message && event.message.text) {
                 var text = event.message.text;
                 
