@@ -20,8 +20,15 @@
 			<div class="title">
                 <h2>Welcome</h2>
             </div>
-            <div class="desc">
+            <div class="desc" style="padding-bottom:10px;">
                 <p>Home to the Awesome VR headset. Immerse yourself into the virtual world of Awesome VR, the headset that sends you into another plane of existence.</p>
+            </div>
+            <div style="margin: 0 auto; width: 300px;">
+            <div class="fb-like"
+                data-share="true"
+                data-width="450"
+                data-show-faces="true">
+            </div>
             </div>
 		</div>
 	</div>
