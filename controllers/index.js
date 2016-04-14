@@ -23,7 +23,8 @@ module.exports = function (router) {
     router.post('/api/messenger', function (req, res) {
         console.log(JSON.stringify(req.body));
         var messaging_events = req.body.entry[0].messaging;
-        for (i = 0; i < messaging_events.length; i++) {
+        
+        for (var i = 0; i < messaging_events.length; i++) {
             event = messaging_events[i];
             sender = event.sender.id;
             if (event.message && event.message.text) {
