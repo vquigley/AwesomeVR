@@ -33,7 +33,7 @@ module.exports = function (router) {
   
             if (event.postback) {
               var text = JSON.stringify(event.postback);
-              sendTextMessage(sender, "Postback received: "+text.substring(0, 200), token);
+              sendTextMessage(sender, "Postback received: "+text.substring(0, 200));
               continue;
             }
             
