@@ -45,7 +45,7 @@ module.exports = function (router) {
                     continue;
                 }
                 
-                sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+                sendTextMessage(sender, "NO YOUR NAME IS MATTHEW! ");
             }
         }
         res.sendStatus(200);
