@@ -21,3 +21,8 @@ A test application for facebook bots using VR as the subject matter.
 
 - Deployed to free Heroku tier and unit tested through Travis CI. 
 - Static code analysis and coverage reports by Code Climate.
+
+## Live Demo
+
+Website: http://awesome-vr.herokuapp.com/
+Facebook Page: 
