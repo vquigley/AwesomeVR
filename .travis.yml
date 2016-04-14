@@ -14,3 +14,9 @@ deploy:
 after_success:
 - npm install codeclimate-test-reporter
 - codeclimate-test-reporter < coverage/lcov.info
+notifications:
+  email:
+    recipients:
+      - vquig@allstate.com
+    on_success: always
+    on_failure: always
