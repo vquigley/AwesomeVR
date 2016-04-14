@@ -48,6 +48,24 @@
             }
         },
         
+        "lusca": {
+            "priority": 100,
+            "enabled": true,
+            "module": {
+                "name": "lusca",
+                "arguments": [
+                    {
+                        "csrf": false ,//,
+                        "csp": false , //{ /* ... */},
+                        "xframe": false ,// 'SAMEORIGIN',
+                        "p3p": false , //'ABCDEF',
+                        "hsts": false , //{maxAge: 31536000, includeSubDomains: true, preload: true},
+                        "xssProtection": false // true
+                    }
+                ]
+            }
+        },
+        
 
         "static": {
             "module": {
