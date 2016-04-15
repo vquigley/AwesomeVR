@@ -59,12 +59,17 @@ module.exports = function (router) {
       return sendGenericMessage(sender);
     }
     
-    if ((text === 'Hello') || (text === 'Hi')) {
+    if (text.toLowerCase().includes("hello") ||
+        text.toLowerCase().includes("hi")){
       return greet(sender);
     }
     
     if (text.toLowerCase().includes("picture")) {
       return showProfilePicture(sender);
+    }
+    
+    if (text.toLowerCase().includes("favourite")) {
+      return sendImage(sender, "http://www.nasa.gov/images/content/690958main_p1237a1.jpg");
     }
     
     sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
