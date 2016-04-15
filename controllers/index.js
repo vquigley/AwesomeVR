@@ -48,7 +48,7 @@ module.exports = function (router) {
   }
   
   function handlePostBack(event, sender) {
-    var payload = event.postback.payload;
+    var payload = typeof event.postback.payload === 'string' ? JSON.parse(event.postback.payload) : event.postback.payload;
     console.log("Postback payload: " + JSON.stringify(payload));
     if (payload.type === "order") {
       return sendOrderConfirmation(sender, payload.value);
@@ -56,12 +56,14 @@ module.exports = function (router) {
     
     if (payload.type === "confirm") {
       //return sendReceipt(sender, payload.value);
-      return sendTextMessage(sender, "Confirmed order or " +  payload.value);
+      return sendTextMessage(sender, "Confirmed order of " +  payload.value);
     }
     
     if (payload.type === "cancel") {
       return sendTextMessage(sender, "Canceled order or " +  payload.value);
     }
+    
+    console.log("Unhandled");
   }
 
   function handleMessage(event, sender) {
