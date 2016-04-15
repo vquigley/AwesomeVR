@@ -48,8 +48,20 @@ module.exports = function (router) {
   }
   
   function handlePostBack(event, sender) {
-    var text = JSON.stringify(event.postback);
-    sendTextMessage(sender, "Postback received: " + text.substring(0, 200));
+    var payload = event.postback.payload;
+    console.log("Postback payload: " + JSON.stringify(payload));
+    if (payload.type === "order") {
+      return sendOrderConfirmation(sender, payload.value);
+    }
+    
+    if (payload.type === "confirm") {
+      //return sendReceipt(sender, payload.value);
+      return sendTextMessage(sender, "Confirmed order or " +  payload.value);
+    }
+    
+    if (payload.type === "cancel") {
+      return sendTextMessage(sender, "Canceled order or " +  payload.value);
+    }
   }
 
   function handleMessage(event, sender) {
@@ -70,6 +82,10 @@ module.exports = function (router) {
     
     if (text.toLowerCase().includes("favourite")) {
       return sendImage(sender, "http://www.nasa.gov/images/content/690958main_p1237a1.jpg");
+    }
+    
+    if (text.toLowerCase().includes("available")) {
+      return sendAvailableWares(sender);
     }
     
     sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
@@ -96,25 +112,42 @@ module.exports = function (router) {
             "url":img_url
           }
         }
-      }
+      };
     
-    request({
-        url: 'https://graph.facebook.com/v2.6/me/messages',
-        qs: {access_token:pageToken},
-        method: 'POST',
-        json: {
-          recipient: {id:sender},
-          message: messageData,
-        }
-      }, 
-      function(error, response, body) {
-        if (error) {
-          console.log('Error sending message: ', error);
-        } else if (response.body.error) {
-          console.log('Error: ', response.body.error);
+    sendRequest(sender, messageData);
+  }
+  
+  function sendOrderConfirmation(sender, productId) {
+    console.log("sendOrderConfirmation");
+    var messageData = {
+      "attachment":{
+        "type":"template",
+        "payload":{
+          "template_type":"button",
+          "text":"Please confirm you would like to order the " + productId + ":",
+          "buttons":[
+            {
+              "type":"postback",
+              "title":"Confirm",
+              "payload":JSON.stringify({
+                      'type':'confirm',
+                      'value':productId
+                  })
+            },
+            {
+              "type":"postback",
+              "title":"Cancel",
+              "payload":JSON.stringify({
+                      'type':'cancel',
+                      'value':productId
+                  })
+            }
+          ]
         }
       }
-    );
+    };
+    
+    sendRequest(sender, messageData);
   }
   
   function getUserInfo(sender, callback) {
@@ -186,7 +219,65 @@ module.exports = function (router) {
     sendRequest(sender, messageData);
   }
   
+  function sendAvailableWares(sender) {
+    var messageData = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [
+            {
+              "title": "Oculus Rift",
+              "subtitle": "Oculus is making it possible to experience anything, anywhere, through the power of virtual reality. Visit to learn more about Gear VR and Oculus Rift.",
+              "image_url": "https://dbvc4uanumi2d.cloudfront.net/cdn/4.5.24/wp-content/themes/oculus/img/order/dk2-product.jpg",
+              "buttons": [
+                {
+                  "type": "web_url",
+                  "url": "https://www.oculus.com/",
+                  "title": "Visit"
+                }, 
+                {
+                  "type": "postback",
+                  "title": "Order",
+                  "payload": JSON.stringify({
+                      'type':'order',
+                      'value':'rift'
+                  }),
+                }
+              ],
+            },
+            {
+              "title": "HTC Vive",
+              "subtitle": "Order Vive today and get Tilt Brush, Fantastic Contraption, and Job Simulator FREE.",
+              "image_url": "https://www.htcvive.com/managed-assets/shared/desktop/vive/product-family-steamlogo.png",
+              "buttons": [
+                {
+                  "type": "web_url",
+                  "url": "https://www.htcvive.com/",
+                  "title": "Visit"
+                }, 
+                {
+                  "type": "postback",
+                  "title": "Order",
+                  "payload": JSON.stringify({
+                      'type':'order',
+                      'value':'vive'
+                  }),
+                }
+              ],
+            },
+          ]
+        }
+      }
+    };
+    
+    sendRequest(sender, messageData);
+  }
+  
   function sendRequest(sender, messageData) {
+    console.log("sendRequest");
+    console.log("sender: " + sender);
+    console.log("messageData: " + JSON.stringify(messageData));
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token:pageToken},
