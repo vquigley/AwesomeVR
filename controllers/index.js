@@ -55,8 +55,9 @@ module.exports = function (router) {
     }
     
     if (payload.type === "confirm") {
-      //return sendReceipt(sender, payload.value);
-      return sendTextMessage(sender, "Confirmed order of " +  payload.value);
+      return getUserInfo(sender, function(body) {
+        return sendReceipt(sender, body.first_name + " " + body.last_name);
+      });
     }
     
     if (payload.type === "cancel") {
@@ -228,10 +229,10 @@ module.exports = function (router) {
         "payload":{
           "template_type":"receipt",
           "recipient_name":name,
-          "order_number":"12345678902",
+          "order_number":Math.random(),
           "currency":"USD",
           "payment_method":"Visa 2345",        
-          "order_url":"http://awesome-vr.herokuapp.com/order?order_id=12345678902",
+          "order_url":"http://awesome-vr.herokuapp.com/order?order_id=123456",
           "timestamp":"1428444852", 
           "elements":[
             {
@@ -240,7 +241,7 @@ module.exports = function (router) {
               "quantity":1,
               "price":500,
               "currency":"USD",
-              "image_url":"http://petersapparel.parseapp.com/img/whiteshirt.png"
+              "image_url":"https://dbvc4uanumi2d.cloudfront.net/cdn/4.5.24/wp-content/themes/oculus/img/order/dk2-product.jpg"
             },
             {
               "title":"Classic Gray T-Shirt",
@@ -260,10 +261,10 @@ module.exports = function (router) {
             "country":"US"
           },
           "summary":{
-            "subtotal":75.00,
-            "shipping_cost":4.95,
-            "total_tax":6.19,
-            "total_cost":56.14
+            "subtotal":525,
+            "shipping_cost":5,
+            "total_tax":70,
+            "total_cost":600
           },
           "adjustments":[
             {
@@ -278,6 +279,8 @@ module.exports = function (router) {
         }
       }
     };
+    
+    sendRequest(sender, messageData);
   }
   
   function sendAvailableWares(sender) {
