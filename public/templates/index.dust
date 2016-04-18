@@ -9,18 +9,13 @@
 	<div class="row">
 		<div class="col-md-12 backg">
 			<div class="col-md-4 col-md-offset-4 inner col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-				<div class="text-box">
-                	<p class="intro">Register Interest</p>
-                    <input type="email" placeholder="EMAIL" />
-                    <h3>Get news on the latest Awesome VR updates</h3>
-                    -------OR-------
-                    <p class="intro">Ask us a question</p>
-                    <div class="fb-messengermessageus" 
+                    <h3 class="intro">Ask us a question</h3>
+                    <div style="padding-bottom:10px" class="fb-messengermessageus" 
                         messenger_app_id="488656554661257" 
-                        page_id="CAAG8bjhblYkBAM7HjhTS2KcmjaSlrlcce80adJ9JUFC4BpDKTCBMIC1i3vKhzF5ScbeZBtyWAD4lI76J24UZBF76mKNNsK4Bqt6oIFxoyCtxgUCCKGTzWO3htRCZAd4soZAVhYQyKD4V52MASPtwFDR13cjSu4b4SIqJfYyP5nWhfhwG5YKoRn9dFTYz6q2gJaLCTxGbugZDZD"
+                        page_id="1018350131566534"
                         color="blue" 
-                        size="standard"></div>
-                     </div>
+                        size="large"></div>
+                     <p class="intro">Our messenger bot would be happy to help</p>
 				</div>
   			</div>
 		</div>
@@ -32,12 +27,24 @@
                 <p>Home to the Awesome VR headset. Immerse yourself into the virtual world of Awesome VR, the headset that sends you into another plane of existence.</p>
             </div>
             <div style="margin: 0 auto; width: 300px;">
-            <div class="fb-like"
-                data-share="true"
-                data-width="450"
-                data-show-faces="true">
+                <div class="fb-like md-col-6"
+                    data-share="true"
+                    data-width="450"
+                    data-show-faces="true">   
+                </div>
                 
             </div>
+            <div class="desc" style="padding-bottom:10px;">
+                <p>Subscribe to updates on the latest Awesome VR new. These updates will be sent directly to your Facebook Messenger account.</p>
+            </div>
+            <div style="margin: 0 auto; width: 300px;">
+                <div class="fb-send-to-messenger" 
+                    messenger_app_id="488656554661257" 
+                    page_id="1018350131566534"
+                    data-ref="register" 
+                    color="blue" 
+                    size="large"></div>
+             </div>
 		</div>
 	</div>
 </div>
